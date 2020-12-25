@@ -1,0 +1,36 @@
+CREATE TABLE TRP_ATTRACTIONS (
+  id int PRIMARY KEY,
+  area_id int,
+  name varchar(100),
+  from_date date,
+  to_date date,
+  voucher_end_date date,
+  phone varchar(30),
+  address varchar(150),
+  price_brutto decimal(18, 2),
+  price_netto decimal(18, 2)
+);
+
+CREATE TABLE TRP_AREAS (
+  id int PRIMARY KEY,
+  name varchar(70)
+);
+
+INSERT INTO TRP_ATTRACTIONS VALUES (1, 11, "eat", '2008-11-11', '2009-11-13', '2020-01-01', "00000", "a st no 1 Eilat", 20.0, 18.0);
+INSERT INTO TRP_ATTRACTIONS VALUES (2, 12, "hike", '2019-11-11', '2019-11-13', '2020-01-01', "11111", "a st no 2 Boston", 20.4, 18.1);
+INSERT INTO TRP_ATTRACTIONS VALUES (3, 13, "dance", '2020-11-11', '2020-11-13', '2020-01-01', "22222", "a st no 3 TLV", 24.0, 138.0);
+INSERT INTO TRP_ATTRACTIONS VALUES (4, 11, "play", '2015-11-11', '2015-11-13', '2020-01-01', "33333", "a st no 4 Boston", 520.0, 618.0);
+INSERT INTO TRP_ATTRACTIONS VALUES (5, 13, "kayaks", '2020-11-11', '2020-11-13', '2020-01-01', "44444", "a st no 5 Eilat", 50.0, 178.0);
+INSERT INTO TRP_ATTRACTIONS VALUES (6, 11, "read", '2021-11-11', '2021-11-13', '2020-01-01', "55555", "a st no 6 Eilat", 10.0, 15.0);
+
+INSERT INTO TRP_AREAS VALUES (11, "Eilat");
+INSERT INTO TRP_AREAS VALUES (12, "Boston");
+INSERT INTO TRP_AREAS VALUES (13, "TLV");
+
+1. SELECT * FROM TRP_ATTRACTIONS WHERE name LIKE '%a%';
+2. SELECT * FROM TRP_ATTRACTIONS WHERE from_date >= '20190101';
+3. SELECT * FROM TRP_ATTRACTIONS INNER JOIN TRP_AREAS ON TRP_ATTRACTIONS.area_id = TRP_AREAS.id WHERE TRP_AREAS.name = "Eilat";
+4. SELECT area_id, COUNT(area_id) as count FROM TRP_ATTRACTIONS GROUP BY area_id HAVING count > 1;
+5. SELECT TRP_AREAS.name, COUNT(TRP_ATTRACTIONS.area_id) AS count FROM TRP_AREAS INNER JOIN TRP_ATTRACTIONS ON TRP_AREAS.id = TRP_ATTRACTIONS.area_id GROUP BY TRP_AREAS.name HAVING count > 1;
+6. SELECT * FROM TRP_ATTRACTIONS INNER JOIN TRP_AREAS ON TRP_ATTRACTIONS.area_id = TRP_AREAS.id WHERE TRP_ATTRACTIONS.address NOT LIKE CONCAT ('%', TRP_AREAS.name, '%');
+7. SELECT *, (price_brutto - price_netto) AS profit FROM TRP_ATTRACTIONS ORDER BY profit DESC LIMIT 1;

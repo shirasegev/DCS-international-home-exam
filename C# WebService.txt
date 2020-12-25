@@ -1,0 +1,54 @@
+
+DCS International Test
+
+In this test you will be tested on self learning skills and OOP code writing.
+Notice:
+#Make sure to use understandable variables names.
+#Make readable code.
+#Use OOP whenever necessary.
+#Do not duplicate code!
+
+
+Task:
+Use Visual Studio (v2012 or above)
+Create a new Asp.Net C# WebForms application.
+
+***************************************************
+** If you know CSS use it to beautify your site. **
+***************************************************
+
+Create a site that has 2 buttons which fires 2 different methods.
+You need to call to a WebService using only Http Request with XML data.
+WebService url: http://web27.agency2000.co.il/Test/TestService.asmx
+
+In this service you can find 2 methods:
+1. GetUsernameAndPassword
+2. SuppliersGain
+
+--
+1. Call GetUsernameAndPassword to get your username and password in order to move to the second method.
+2. The second method is SuppliersGain,
+pay attentios to send the username and password you got from "GetUsernameAndPassword" or else the second method does nothing.
+Here you need to send 3 suppliers, each Supplier has the next parameters: Id, Name, Brutto, Netto (See Supplier class decleration on documentaion section below)
+This method will return the total gain (a decimal number) of each supplier you'll send. (See SupplierGain class decleration on documentaion section below)
+You required to display the total gain of each supplier. 
+
+Documentaion:
+
+public class Supplier
+{
+    public string Id { get; set; }
+    public string Name { get; set; }
+	public decimal Brutto { get; set; }
+	public decimal Netto { get; set; }
+}
+
+public class SupplierGain
+{
+	public string Name { get; set; }
+	public decimal TotalGain { get; set; }
+}
+
+
+#If you have any question you can send me a message on LinkedIn
+https://www.linkedin.com/in/chen-krengel-b71520b5/
